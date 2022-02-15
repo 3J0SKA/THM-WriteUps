@@ -80,7 +80,7 @@ But once we visit the `Mobile Dev` link we get a option `Apply to Position`
 
 After clicking here we get a options to apply to the job and we can upload a file here which can be used for malicious reasons. 
 
-So I searched for `opencat exploits` and I came across [this](https://doddsecurity.com/312/xml-external-entity-injection-xxe-in-opencats-applicant-tracking-system/) article.
+So I searched for `opencat exploits` and I came across [this](https://doddsecurity.com/312/xml-external-entity-injection-xxe-in-opencats-applicant-tracking-system/) and [this](https://mikadmin.fr/blog/tryhackme-empline/) article.
 
 So in this vulnerability, opencat allows us to upload a `.docx` file and as a docx file is made up of a lots of xml files, the opencat portal executes the `word/document.xml` file present in it.
 
@@ -176,8 +176,10 @@ sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
 pollinate:x:110:1::/var/cache/pollinate:/bin/false
 ubuntu:x:1001:1001:Ubuntu:/home/ubuntu:/bin/bash
 mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
-[REDACTED]:x:1002:1002::/home/george:/bin/bash
+george:x:1002:1002::/home/george:/bin/bash
 ```
+
+By looking at this we now know that the system has a user names `george`.
 
 Now lets also get a the config file using the same technique as shows in the above linked articles, to get the config file you have to just change this. 
 
