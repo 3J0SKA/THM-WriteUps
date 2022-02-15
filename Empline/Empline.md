@@ -4,7 +4,7 @@
 
 A detailed walkthrough on the room [Empline](https://tryhackme.com/room/empline) on [https://www.tryhackme.com/](https://tryhackme.com).
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled.png)
 
 Difficulty : Medium 
 
@@ -50,33 +50,33 @@ So here we can assume that the HTTP service is using mysql as their database. Le
 
 But before we visit the website we will have to add the website to `/etc/hosts` with the host name `empline.thm`
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%201.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%201.png)
 
 Once that is done we can visit the webpage, on visiting the webpage looks pretty normal with nothing useful. 
 
 Then after hovering over the `Employment` section in the webpage I saw that it redirects us to `job.empline.thm/careers` so I added this to my `/etc/hosts` file too. 
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%202.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%202.png)
 
 Now let’s visit the subdomain. 
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%203.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%203.png)
 
 And if we click on `current opening positions` it redirects us to a other page with a lots of parameters. 
 
 The parameters : 
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%204.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%204.png)
 
 The webpage : 
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%205.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%205.png)
 
 And clicking on the `Mobile Dev` also adds a another parameter `ID` to the url.
 
 But once we visit the `Mobile Dev` link we get a option `Apply to Position`
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%206.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%206.png)
 
 After clicking here we get a options to apply to the job and we can upload a file here which can be used for malicious reasons. 
 
@@ -95,7 +95,7 @@ document.save("script.docx")
 
 After running the script you should have your `.docx` file ready.
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%207.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%207.png)
 
 Now we have to `unzip` the `.docz` file. And then follow the commands.
 
@@ -140,7 +140,7 @@ And now your malicious resume is ready!
 
 Now you have to select the resume and then hit upload,  you will see this. 
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%208.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%208.png)
 
 Now we have the `/etc/passwd` file of the system! 
 
@@ -191,7 +191,7 @@ And now you can zip the file like we did earlier!
 
 And now after upload the file you should have this! 
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%209.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%209.png)
 
 This string is decoded by base64 so we can decode it and then you will get 
 
@@ -222,13 +222,13 @@ Now you should have 3 users and 3 passwords.
 
 And you can crack one of the password using [crackstation.net](http://crackstation.net/).
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%2010.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%2010.png)
 
 Now you can log into SSH with the user and the password and you will get the `user.txt`
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%2011.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%2012.png)
 
-![naruto-anime.gif](Empline%2003dc209133254172aa5afcd3e291e1cd/naruto-anime.gif)
+![naruto-anime.gif](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/naruto-anime.gif)
 
 ## 3- Privilege Escalation
 
@@ -280,13 +280,13 @@ Files with capabilities:
 
 Here we can see that ruby is a file with capabilities so I instantly searched for `ruby` on GTFOBins.
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%2013.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%2013.png)
 
 I couldn’t really understand the GTFOBins command so I started researching on ruby chown and came across this [ruby documentation](https://ruby-doc.org/stdlib-2.4.1/libdoc/fileutils/rdoc/FileUtils.html). 
 
 And according to this page the idea of command should be. 
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%2014.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%2014.png)
 
  
 
@@ -300,8 +300,8 @@ Now let’s understand the command, so here first of all we execute the command 
 
 Then we “import” the fileutils library and then we follow the above idea we got from the documentation so we specify the `user` then the `group` and then the `options` and its done.
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%2015.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%2015.png)
 
 And we did it!!!
 
-![mr-robot-happy.gif](Empline%2003dc209133254172aa5afcd3e291e1cd/mr-robot-happy.gif)
+![mr-robot-happy.gif](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/mr-robot-happy.gif)
