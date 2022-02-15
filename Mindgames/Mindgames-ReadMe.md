@@ -4,7 +4,7 @@
 
 A detailed walkthrough on the [TryHackMe](https://tryhackme.com) room [Mindgames](https://tryhackme.com/room/mindgames) by 3J0SKA
 
-![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Untitled.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled.png)
 
 ## 1- Scanning And Enumerating
 
@@ -12,7 +12,7 @@ Now first we will scan the machine to find any ports.
 
 For scanning I will be using rustscan. 
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%201.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%201.png)
 
 Here we found 2 ports, one running on port 22 (SSH) and the other one running on port 80 (HTTP).
 
@@ -20,17 +20,17 @@ Lets check out the HTTP page now!
 
 By looking at the HTTP page we can see some decoding happening.
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%202.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%202.png)
 
 And then we also have a input which can be used to decode the above decoding. But we don’t know the decoding yet.
 
 After researching for a while, I got to know that this decoding is called `brainfuck` so I copied this `Hello, World` code and decoded it.
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%203.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%203.png)
 
 After decoding this, I found out that the input field actually takes the `brainfuck` decoding and decodes it, after decoding it executes are code.
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%204.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%204.png)
 
 And here in this case the code is written in python, So to make sure we can actually execute command on the system using python I made a simple script which executes the command `ls` on the system. 
 
@@ -44,7 +44,7 @@ So here we have our script, but before we can execute it we have to covert it to
 
 So let’s execute the code.
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%205.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%205.png)
 
 Here you go! It works and we can execute python scripts on the system. Now the obvious thing to do is to execute a reverse shell on the system!
 
@@ -58,11 +58,11 @@ You have to make sure that the script doesn’t use any libraries that can’t b
 
 And after executing the code you should have a reverse connect! 
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%206.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%206.png)
 
 Now as we have the foothold of the system, lets get the `user.txt` file!
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%207.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%207.png)
 
 ![https://c.tenor.com/TPXMriXwLD4AAAAC/lets-go-the-rock.gif](https://c.tenor.com/TPXMriXwLD4AAAAC/lets-go-the-rock.gif)
 
@@ -74,21 +74,21 @@ I tried all of basic privilege escalation techniques like sudo files or suid, bu
 
 First we have to get the file on the system, to do that lets set up a Python server.
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%208.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%208.png)
 
 Now we can `wget` the file. 
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%209.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%209.png)
 
 Now you can execute the file, after giving it the permissions using `chmod`. 
 
 So after sometime I found this in the linpeas scan.
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%2010.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%2010.png)
 
 So I immediately searched for this on [`https://gtfobins.github.io`](https://gtfobins.github.io/) and found this. 
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%2011.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%2011.png)
 
 I couldn’t understand what this command was doing and it was also throwing a error, so I decided to find something else for the privilege escalation. 
 
@@ -120,16 +120,16 @@ Now you should have a file named `[open.so](http://open.so)` that you have to se
 
 After that you have to give permissions to the file. 
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%2012.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%2012.png)
 
 And now you can execute the script!
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%2013.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%2013.png)
 
 Hurray!!! We got the root privileges! 
 
 Now you can find the flag at `/root/root.txt`
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled%2014.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Images/Untitled%2014.png)
 
 ![https://c.tenor.com/HJ0iSKwIG28AAAAC/yes-baby.gif](https://c.tenor.com/HJ0iSKwIG28AAAAC/yes-baby.gif)
