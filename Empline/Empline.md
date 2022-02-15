@@ -226,7 +226,7 @@ And you can crack one of the password using [crackstation.net](http://crackstati
 
 Now you can log into SSH with the user and the password and you will get the `user.txt`
 
-![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%2012.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%2011.png)
 
 ![naruto-anime.gif](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/naruto-anime.gif)
 
@@ -236,7 +236,7 @@ Now we have the user file, its time to get the root!
 
 First of all I tried the classic `sudo -l` technique but couldn’t find anything.
 
-![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%2012.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Empline/Images/Untitled%2012.png)
 
 Now after that I checked for SUIDs and found nothing again. Now I transported [linpeas.sh](http://linpeas.sh) to the victim system. 
 
