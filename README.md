@@ -8,7 +8,7 @@ Yo guys I am [3J0SKA](https://www.github.com/3J0SKA) and in this repository I wi
 
 Here are the write-ups already uploaded in the repository!
 
-* [Empline](https://github.com/3J0SKA/THM-WriteUps/tree/main/Empline/Mindgames.md)
+* [Empline](https://github.com/3J0SKA/THM-WriteUps/tree/main/Empline/Empline.md)
 
 * [Mindgames](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Mindgames.md)
 
