@@ -179,8 +179,6 @@ mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false
 [REDACTED]:x:1002:1002::/home/george:/bin/bash
 ```
 
-By looking at this we now know that the system has a user names `george`.
-
 Now lets also get a the config file using the same technique as shows in the above linked articles, to get the config file you have to just change this. 
 
 ```bash
