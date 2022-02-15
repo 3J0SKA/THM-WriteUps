@@ -4,7 +4,7 @@
 
 A detailed walkthrough on the [TryHackMe](https://tryhackme.com) room [Mindgames](https://tryhackme.com/room/mindgames) by 3J0SKA
 
-![Untitled](MindGames%20735347bab3804dfe9220e0c24586ed04/Untitled.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Mindgames/Untitled.png)
 
 ## 1- Scanning And Enumerating
 
