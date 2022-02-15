@@ -228,7 +228,7 @@ Now you can log into SSH with the user and the password and you will get the `us
 
 ![Untitled](Empline%2003dc209133254172aa5afcd3e291e1cd/Untitled%2011.png)
 
-[https://tenor.com/view/lol-haha-wow-mr-robot-laugh-gif-5711275](https://tenor.com/view/lol-haha-wow-mr-robot-laugh-gif-5711275)
+![naruto-anime.gif](Empline%2003dc209133254172aa5afcd3e291e1cd/naruto-anime.gif)
 
 ## 3- Privilege Escalation
 
@@ -304,4 +304,4 @@ Then we “import” the fileutils library and then we follow the above idea we 
 
 And we did it!!!
 
-[https://tenor.com/view/mr-robot-happy-glad-gif-9973480](https://tenor.com/view/mr-robot-happy-glad-gif-9973480)
+![mr-robot-happy.gif](Empline%2003dc209133254172aa5afcd3e291e1cd/mr-robot-happy.gif)
