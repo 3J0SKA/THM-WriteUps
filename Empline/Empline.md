@@ -80,7 +80,7 @@ But once we visit the `Mobile Dev` link we get a option `Apply to Position`
 
 After clicking here we get a options to apply to the job and we can upload a file here which can be used for malicious reasons. 
 
-So I searched for `opencat exploits` and I came across [this](https://doddsecurity.com/312/xml-external-entity-injection-xxe-in-opencats-applicant-tracking-system/) and [this](https://mikadmin.fr/blog/tryhackme-empline/) article.
+So I searched for `opencat exploits` and I came across [this](https://doddsecurity.com/312/xml-external-entity-injection-xxe-in-opencats-applicant-tracking-system/) article.
 
 So in this vulnerability, opencat allows us to upload a `.docx` file and as a docx file is made up of a lots of xml files, the opencat portal executes the `word/document.xml` file present in it.
 
