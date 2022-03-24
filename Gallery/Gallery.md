@@ -154,4 +154,4 @@ Now if we type in `read` in the input field it opens up a `nano` edit window for
 
 Once done you will have the root access!
 
-[https://tenor.com/view/naruto-wink-smile-happy-sarcastic-gif-7551863](https://tenor.com/view/naruto-wink-smile-happy-sarcastic-gif-7551863)
+[https://c.tenor.com/mCiM7CmGGI4AAAAC/naruto.gif](https://c.tenor.com/mCiM7CmGGI4AAAAC/naruto.gif)
