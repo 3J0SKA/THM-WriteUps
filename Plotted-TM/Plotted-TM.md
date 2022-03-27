@@ -8,7 +8,7 @@ A Detailed walkthrough on the [TryHackMe](http://tryhackme.com) room Plotted-TMS
 
 First we will start with general enumeration, I am going to use Nmap for the scan. 
 
-![Untitled](Plotted-TM%20f5749/Untitled.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled.png)
 
 After the scan we know that port 22,80,445 are open.
 
@@ -16,7 +16,7 @@ After the scan we know that port 22,80,445 are open.
 
 Now its time to enumerate the HTTP ports, let’s start with port 80. On visiting the IP it just shows a default apache2 page. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%201.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%201.png)
 
 So now I decided to run a `gobuster` scan to find some directories. 
 
@@ -28,7 +28,7 @@ gobuster dir -u http://10.10.223.60/ -w /usr/share/wordlists/dirbuster/directory
 
 After running the scan, It found 3 directories which had promising names. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%202.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%202.png)
 
 In visiting the `/admin` page I just found a `id_rsa` file, well not a file it was just a single line 😢.
 
@@ -40,23 +40,23 @@ bm90IHRoaXMgZWFzeSA6RA==
 
 After cracking the hash we get this.
 
-![Untitled](Plotted-TM%20f5749/Untitled%203.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%203.png)
 
 Let’s move onto the other HTTP port (445). After visiting the page it still shows a default apache2 page. So I decided to run a `gobuster` scan again.
 
-![Untitled](Plotted-TM%20f5749/Untitled%204.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%204.png)
 
 That looks interesting, on visiting the website we do not find anything important. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%205.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%205.png)
 
 So I decided to run a `gobuster` scan again on the `/management` directory. The scan found a lots of interesting directories. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%206.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%206.png)
 
 `/admin` was interesting, so I decided to visit and it redirected me to a login page.
 
-![Untitled](Plotted-TM%20f5749/Untitled%207.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%207.png)
 
 So I decided to use a SQLI payload here to bypass the login form, and it worked!
 
@@ -64,7 +64,7 @@ Payload used : `' or 1=1 -- -`
 
 Now we have access to the admin dashboard!
 
-![Untitled](Plotted-TM%20f5749/Untitled%208.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%208.png)
 
 ## 3- Exploiting SQLI
 
@@ -74,23 +74,23 @@ So after searching for vulnerabilities online, I read that the CMS is full of SQ
 
 So I clicked on Drivers List.
 
-![Untitled](Plotted-TM%20f5749/Untitled%209.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%209.png)
 
 And then there was a driver already listed in the website with some detailes.
 
-![Untitled](Plotted-TM%20f5749/Untitled%2010.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2010.png)
 
 So I clicked on Edit.
 
-![Untitled](Plotted-TM%20f5749/Untitled%2011.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2011.png
 
 After you click on Edit you will see a parameter pop up in the URL of the page. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%2012.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2012.png)
 
 So I decided to use the same SQLI payload here, if the result do show up even after the payload then the website is most likely vulnerable to SQLI injection. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%2013.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2013.png)
 
 After injection I could still see the details, which shows that it is indeed vulnerable, now let’s intercept the request using `burpsuite` and save it.
 
@@ -100,13 +100,13 @@ To save the request, just right click and click on Save Item.
 
 Let’s run a scan to found out all of the databases present!
 
-![Untitled](Plotted-TM%20f5749/Untitled%2014.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2014.png)
 
 Note : Make sure to add `-p id` to specify that we are testing only the `id` parameter, as the request you have saved will also have a parameter named `page`.
 
 Now we have 2 databases! 
 
-![Untitled](Plotted-TM%20f5749/Untitled%2015.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2015.png)
 
 The database `tmb_db` looks more interesting, let’s check the tables in it.
 
@@ -118,7 +118,7 @@ sqlmap -r req.req -p id -D tms_db --tables --threads 10
 
 After this I found tons of tables but `users` caught my attention. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%2016.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2016.png)
 
 Now I ran the scan to find the columns present in `users` table and found 10 columns.
 
@@ -130,7 +130,7 @@ sqlmap -r req.req -p id -D tms_db -T users --columns --threads 10
 
 These are the columns found. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%2017.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2017.png)
 
 Now out of these columns `username`, `password` and `id` seems to be interesting, so let’s dump them.
 
@@ -142,11 +142,11 @@ sqlmap -r req.req -p id -D tms_db -T users -C username,password,id --dump --thre
 
 After this I found 2 hashes one of which is of admin’s password, let’s crack it. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%2018.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2018.png)
 
 At first [crackstation.net](http://crackstation.net) couln’t crack the `admin's` hash but was able to crack the hash of `puser`
 
-![Untitled](Plotted-TM%20f5749/Untitled%2019.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2019.png)
 
 ## 4- Remote Code Execution
 
@@ -158,27 +158,27 @@ Here are the steps to receive the reverse shell.
 
 1- Click on the Administrator Admin button above.
 
-![Untitled](Plotted-TM%20f5749/Untitled%2020.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2020.png)
 
 2- Click on My Account.
 
-![Untitled](Plotted-TM%20f5749/Untitled%2021.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2021.png)
 
 3- Setting up a reverse shell.
 
-![Untitled](Plotted-TM%20f5749/Untitled%2022.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2022.png)
 
 4- Scroll down and click Browse to select your new avatar and select the PHP reverse shell. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%2023.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2023.png)
 
 5- Click Update.
 
-![Untitled](Plotted-TM%20f5749/Untitled%2024.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2024.png)
 
 6- Boom! You have the shell! 
 
-![Untitled](Plotted-TM%20f5749/Untitled%2025.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2025.png)
 
 ## 5- Privilege Escalation [1]
 
@@ -188,7 +188,7 @@ Now I started trying some classic privilege escalation techniques, and found a i
 
  
 
-![Untitled](Plotted-TM%20f5749/Untitled%2026.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2026.png)
 
 The contents of the file shows that the cronjob just saves backup files. 
 
@@ -230,7 +230,7 @@ chmod +x backup.sh
 
 Now after sometime you should receive the shell.
 
-![Untitled](Plotted-TM%20f5749/Untitled%2027.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2027.png)
 
 And now we also have the user.txt file!
 
@@ -244,11 +244,11 @@ Let’s run it up!
 
 After the scan, linpeas found this.
 
-![Untitled](Plotted-TM%20f5749/Untitled%2028.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2028.png)
 
 So I checked the GTFObins page for openssl and found this. 
 
-![Untitled](Plotted-TM%20f5749/Untitled%2029.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2029.png)
 
 So to get root, follow the following commands. 
 
@@ -266,4 +266,4 @@ doas openssl enc -in "$LFILE"
 
 And now we have `root.txt`.
 
-![Untitled](Plotted-TM%20f5749/Untitled%2030.png)
+![Untitled](https://github.com/3J0SKA/THM-WriteUps/blob/main/Plotted-TM/Images/Untitled%2030.png)
